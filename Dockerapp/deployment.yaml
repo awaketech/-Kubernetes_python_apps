@@ -4,7 +4,7 @@ metadata:
   name: python-service
 spec:
   selector:
-    app: example-app
+    app: python-app
   ports:
   - protocol: "TCP"
     port: 6000
@@ -13,14 +13,14 @@ spec:
 
 ---
 
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-app
 spec:
   selector:
     matchLabels:
-      app: example-app
+      app: python-app
   replicas: 2
   template:
     metadata:
@@ -28,7 +28,7 @@ spec:
         app: python-app
     spec:
       containers:
-      - name: example-app
+      - name: python-app
         image: python-imdb
         imagePullPolicy: IfNotPresent
         ports:
